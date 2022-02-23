@@ -6,17 +6,17 @@
   tasks:
   - name: Ensure httpd is installed
     ansible.builtin.yum:
-      name: nginx
+      name: httpd
       state: installed
 
   - name: Ensure httpd is enable
     ansible.builtin.service:
-      name: nginx
+      name: httpd
       enabled: yes
 
   - name: Ensure httpd is started
     ansible.builtin.service:
-      name: nginx
+      name: httpd
       state: started
 
   - name: Ensure git is installed
@@ -27,6 +27,6 @@
   - name: Ensure clone the app from git repository.
     ansible.builtin.git:
       repo: https://github.com/GopireddyVuyyuru/food.git
-      dest: /usr/share/nginx/html
+      dest: /var/www/html
 
 ...
