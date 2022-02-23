@@ -1,0 +1,32 @@
+---
+- name: Update n2 servers
+  hosts: n2
+  become: yes
+
+  tasks:
+  - name: Ensure httpd is installed
+    ansible.builtin.yum:
+      name: nginx
+      state: installed
+
+  - name: Ensure httpd is enable
+    ansible.builtin.service:
+      name: nginx
+      enabled: yes
+
+  - name: Ensure httpd is started
+    ansible.builtin.service:
+      name: nginx
+      state: started
+
+  - name: Ensure git is installed
+    ansible.builtin.yum:
+      name: git
+      state: installed
+
+  - name: Ensure clone the app from git repository.
+    ansible.builtin.git:
+      repo: https://github.com/GopireddyVuyyuru/food.git
+      dest: /usr/share/nginx/html
+
+...
