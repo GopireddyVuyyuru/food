@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('clone the code') {
-      steps {
-        git(url: 'https://github.com/GopireddyVuyyuru/food.git', branch: 'master')
+      parallel {
+        stage('clone the code') {
+          steps {
+            git(url: 'https://github.com/GopireddyVuyyuru/food.git', branch: 'master')
+          }
+        }
+
+        stage('clone') {
+          steps {
+            git(url: 'https://github.com/GopireddyVuyyuru/ecomm.git', branch: 'master')
+          }
+        }
+
       }
     }
 
